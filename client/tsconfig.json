@@ -1,0 +1,39 @@
+{
+    "compilerOptions": {
+        "module": "ESNext", // specify module code generation
+        "jsx": "react-jsx", // how TS handles JSX files
+        "strict": true, // basically the point of TS
+        "strictNullChecks": true, // enable strict null checks as a best practice
+        "forceConsistentCasingInFileNames": true, // makes consistent filename casing across OS's
+        "allowJs": true, // allow a partial TypeScript and JavaScript codebase
+        "esModuleInterop": false, // ES vs Common need different types UTH; false = treat them differently
+        "allowSyntheticDefaultImports": true, // can write import ___ instead of import * (former assumes you're importing everything)
+        "sourceMap": true, // allow sourcemap support
+        "outDir": "./dist/", // path to output directory
+        // "noEmit": true, // JS outputs are files or behind-the-scenes (so no outputs to the file structure)
+        "target": "ESNext", // version of JS to transpile to (i.e "es5"); ESNext is the latest version
+    },
+    "include": [
+        "./src/"
+    ]
+}
+
+//
+{
+  "compilerOptions": {
+
+    "useDefineForClassFields": true, // smoothes transition to newer JS versions (migrating to latest v of class fields)
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // TS internal libraries to assert types, if not coder-defined
+    "skipLibCheck": true, // skips type checking for declaration files (node_modules) for added runtime performance
+
+
+    "module": "ESNext", // Do you want to use CommonJS (better for TS BE config) or ES modules (better for FE config)?
+    "moduleResolution": "Node", // emulating the way Node resolves modules (file paths, imports / exports)
+    "resolveJsonModule": true, // should TS handle JSON modules? It doesn't support by default
+    "isolatedModules": true, //
+
+    "jsx": "react-jsx" // how TS handles JSX files
+  },
+  "include": ["src"], // TS files directory
+  "references": [{ "path": "./tsconfig.node.json" }] //
+}
