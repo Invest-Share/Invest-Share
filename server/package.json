@@ -5,8 +5,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "build": "rimraf dist && tsc",
+    "prestart": "npm run build",
+    "start": "node dist/server.js",
+    "dev": "rimraf dist && tsc -w & nodemon dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -23,9 +25,19 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.59.0",
+    "@typescript-eslint/parser": "^5.59.0",
     "eslint": "^8.38.0",
     "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-standard-with-typescript": "^34.0.1",
     "eslint-plugin-import": "^2.27.5",
-    "nodemon": "^2.0.22"
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "nodemon": "^2.0.22",
+    "rimraf": "^5.0.0",
+    "typescript": "^5.0.4"
   }
 }
