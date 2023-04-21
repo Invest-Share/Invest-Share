@@ -22,7 +22,17 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import './TableFriends.css';
 
-function TableFriends({ friends }) {
+type TableFriendsProps = {
+	friends: any; // **TODO** redefine type for better type checking
+}
+
+type Friend = {
+	first_name: string;
+	last_name: string;
+	user_id: any; // **TODO** redefine type for better type checking
+}
+
+const TableFriends: React.FunctionComponent<TableFriendsProps> = ({ friends }) => {
 	const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 		'& .MuiDialogContent-root': {
 			padding: theme.spacing(2),
@@ -32,7 +42,7 @@ function TableFriends({ friends }) {
 		},
 	}));
 
-	function BootstrapDialogTitle(props) {
+	function BootstrapDialogTitle(props: any) { // **TODO** redefine type for better type checking
 		const { children, onClose, ...other } = props;
 
 		return (
@@ -68,8 +78,6 @@ function TableFriends({ friends }) {
 	const handleClose = () => {
 		setOpen(false);
 	};
-	// const first_name = friends.map((friend) => friend.first_name);
-	// console.log(first_name);
 
 	return (
 		<>
@@ -82,7 +90,7 @@ function TableFriends({ friends }) {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{friends.map((friend, index) => (
+					{friends.map((friend: Friend, index: any) => (	// **TODO** redefine 'any' for better type checking
 						<TableRow key={index}>
 							<TableCell>{friend.first_name}</TableCell>
 							<TableCell>{friend.last_name}</TableCell>
@@ -100,52 +108,3 @@ function TableFriends({ friends }) {
 }
 
 export default TableFriends;
-
-{
-	/* <TableCell>
-<Button onClick={handleClickOpen}>View</Button>
-<BootstrapDialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
-	<BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-		{friend.first_name}
-	</BootstrapDialogTitle>
-	<DialogContent dividers>
-		<Typography gutterBottom>
-			<div>{JSON.stringify(friend.user_id)}</div>
-			<FriendPieChart friendID={friend.user_id} />
-		</Typography>
-	</DialogContent>
-	<DialogActions>
-		<Button autoFocus onClick={handleClose}>
-			OK
-		</Button>
-	</DialogActions>
-</BootstrapDialog>
-</TableCell> */
-}
-
-{
-	/* <TableCell>
-          <Button variant="outlined" onClick={handleClickOpen}>
-          View
-          </Button>
-      <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}
-      >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          `${friend.first_name}'s Portfolio`
-        </BootstrapDialogTitle>
-        <DialogContent dividers>
-          <Typography gutterBottom>
-            PIE CHART 
-          </Typography>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            OK
-          </Button>
-        </DialogActions>
-      </BootstrapDialog>
-    </TableCell> */
-}
