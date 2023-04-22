@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Box, styled, Typography, Stack, CssBaseline, InputBase, TextField, Button, Grid } from '@mui/material';
-import { Container } from '@mui/system';
-import axios from '../api/axios';
-import SearchIcon from '@mui/icons-material/Search';
+// ********** unused imports are commented out **********
+
+// import React, { useState, useEffect } from 'react';
+import React from 'react'; //removed uncalled imports from above
+// import { Link } from 'react-router-dom';
+// import { Box, styled, Typography, Stack, CssBaseline, InputBase, TextField, Button, Grid } from '@mui/material';
+import { styled, Button } from '@mui/material'; // removed uncalled imports from above
+// import { Container } from '@mui/system';
+// import axios from '../api/axios';
+// import SearchIcon from '@mui/icons-material/Search';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import PropTypes from 'prop-types';
-import Dialog from '@mui/material/Dialog';
+// import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
-import DialogContent from '@mui/material/DialogContent';
-import DialogActions from '@mui/material/DialogActions';
+// import DialogContent from '@mui/material/DialogContent';
+// import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
-import CustomPieChart from './CustomPieChart';
+// import CustomPieChart from './CustomPieChart';
 import FriendPieChart from './FriendPieChart';
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
@@ -25,7 +29,6 @@ import './TableFriends.css';
 type TableFriendsProps = {
 	friends: any; // **TODO** redefine type for better type checking
 }
-
 type Friend = {
 	first_name: string;
 	last_name: string;
@@ -33,16 +36,19 @@ type Friend = {
 }
 
 const TableFriends: React.FunctionComponent<TableFriendsProps> = ({ friends }) => {
-	const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-		'& .MuiDialogContent-root': {
-			padding: theme.spacing(2),
-		},
-		'& .MuiDialogActions-root': {
-			padding: theme.spacing(1),
-		},
-	}));
+	// *********************************
+	// ********** unused code **********
+	// *********************************
+	// const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+	// 	'& .MuiDialogContent-root': {
+	// 		padding: theme.spacing(2),
+	// 	},
+	// 	'& .MuiDialogActions-root': {
+	// 		padding: theme.spacing(1),
+	// 	},
+	// }));
 
-	function BootstrapDialogTitle(props: any) { // **TODO** redefine type for better type checking
+	function BootstrapDialogTitle(props: any): JSX.Element { // **TODO** redefine type for better type checking
 		const { children, onClose, ...other } = props;
 
 		return (
@@ -72,10 +78,10 @@ const TableFriends: React.FunctionComponent<TableFriendsProps> = ({ friends }) =
 
 	const [open, setOpen] = React.useState(false);
 
-	const handleClickOpen = () => {
+	const handleClickOpen = (): void => {
 		setOpen(true);
 	};
-	const handleClose = () => {
+	const handleClose = (): void => {
 		setOpen(false);
 	};
 

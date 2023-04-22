@@ -17,7 +17,7 @@ const FriendPieChart: React.FunctionComponent<FriendPieChartProps> = ({ friendID
 	const [friendHoldings, setFriendHoldings] = useState([]);
 
 	useEffect(() => {
-		const getAllFriendHoldings = async () => {
+		const getAllFriendHoldings: () => Promise<void> = async () => {
 			try {
 				const response = await axios.get(GETFRIENDHOLDINGS_URL);
 				if (response.data) {
@@ -33,7 +33,7 @@ const FriendPieChart: React.FunctionComponent<FriendPieChartProps> = ({ friendID
 
 	const tickers = friendHoldings.map((stock: {ticker: string}) => stock.ticker);
 
-	const numberfy = () => {
+	const numberfy = (): number[] => {
 		// **TODO** redefine percent to specific type instead of 'any'
 		const percent: any = friendHoldings.map((stock: {percent_of_holdings: number}) => stock.percent_of_holdings);
 		const finalData = [];
