@@ -17,7 +17,7 @@ app.use('/api', router);
 
 // global error handling
 /*
-TO-DO: 1. confirm err type. 2. Re-write the err handler to provide more descriptive err message.
+TO-DO: 1. Use the errorhandler package 2. confirm err type. 3. Re-write the err handler to provide more descriptive err message.
 */
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   console.log(err);

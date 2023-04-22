@@ -1,21 +1,19 @@
-const db = require('../db/investWithFriendsDb');
-const { API_KEY } = require('../utils/config');
-var request = require('request');
-const axios = require('axios');
+import axios from 'axios';
 
-const updateStocksService = {};
+import db from '../db/investWithFriendsDb';
+import { API_KEY } from '../utils/config';
 
-updateStocksService.getTickers = async () => {
+export const getTickers = async (): Promise<string[]> => {
   const query = 'SELECT ticker FROM stocks';
   const tickers = await db.query(query);
-  const tickersArr = [];
+  const tickersArr: string[] = [];
   for (let i = 0; i < tickers.rows.length; i++) {
     tickersArr.push(tickers.rows[i].ticker);
   }
   return tickersArr;
 };
 
-updateStocksService.getClosingPriceAxios = async (ticker) => {
+export const getClosingPriceAxios = async (ticker: string): Promise<number> => {
   const response = await axios.get('https://www.alphavantage.co/query', {
     params: {
       function: 'TIME_SERIES_DAILY_ADJUSTED',
@@ -28,15 +26,18 @@ updateStocksService.getClosingPriceAxios = async (ticker) => {
   });
   const lastDate = Object.keys(response.data['Time Series (Daily)'])[0];
   const closingPrice = Number(
-    response.data['Time Series (Daily)'][lastDate]['4. close'],
+    response.data['Time Series (Daily)'][lastDate]['4. close']
   );
   return closingPrice;
 };
 
-updateStocksService.updateClosingPrices = async (ticker, closingPrice) => {
+export const updateClosingPrices = async (
+  ticker: string,
+  closingPrice: number
+): Promise<boolean> => {
   const query =
     'UPDATE stocks SET closing_price = $2, last_updated = $3 WHERE ticker = $1';
-  const params = [ticker, closingPrice, Math.floor(Date.now() / 1000)];
+  const params = [ticker, closingPrice, Date.now()];
   const update = await db.query(query, params);
   return update.rowCount === 1;
 };
@@ -50,7 +51,7 @@ updateStocksService.updateClosingPrices = async (ticker, closingPrice) => {
 //     return holdings.rows;
 // }
 
-updateStocksService.getCompanyName = async (ticker) => {
+export const getCompanyName = async (ticker: string): Promise<string> => {
   const response = await axios.get('https://www.alphavantage.co/query', {
     params: {
       function: 'OVERVIEW',
@@ -61,8 +62,6 @@ updateStocksService.getCompanyName = async (ticker) => {
       'User-Agent': 'request',
     },
   });
-  const companyName = response.data.Name;
+  const companyName: string = response.data.Name;
   return companyName;
 };
-
-module.exports = updateStocksService;

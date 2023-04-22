@@ -1,9 +1,10 @@
-const validator = {};
+import type { Response, Request, NextFunction } from 'express';
 
-/*
-  Use typescript for this type valication.
-*/
-validator.addHolding = (req, res, next) => {
+export const addHolding = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   const { user_id, ticker, stock_quantity } = req.body;
   if (
     typeof user_id === 'number' &&
@@ -31,7 +32,11 @@ validator.addHolding = (req, res, next) => {
   }
 };
 
-validator.deleteHolding = (req, res, next) => {
+export const deleteHolding = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   const { user_id, ticker } = req.body;
   if (typeof user_id === 'number' && typeof ticker === 'string') {
     return next();
@@ -53,9 +58,17 @@ validator.deleteHolding = (req, res, next) => {
   }
 };
 
-validator.relationships = (req, res, next) => {
+export const relationships = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): void => {
   const { user_id, first_name, last_name } = req.body;
-  if (typeof user_id === 'number' && typeof ticker === 'string') {
+  if (
+    typeof user_id === 'number' &&
+    typeof first_name === 'string' &&
+    typeof last_name === 'string'
+  ) {
     return next();
   } else {
     return next(`
@@ -76,5 +89,3 @@ validator.relationships = (req, res, next) => {
     `);
   }
 };
-
-module.exports = validator;

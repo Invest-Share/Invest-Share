@@ -3,7 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": "standard-with-typescript",
+  "extends": ["standard-with-typescript", "prettier"],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -13,7 +13,16 @@
   },
   "rules": {
     "no-console": "off",
-    "@typescript-eslint/semi": "off",
-    "@typescript-eslint/comma-dangle": "off"
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/consistent-indexed-object-style": [
+      "error",
+      "index-signature"
+    ],
+    "@typescript-eslint/no-confusing-void-expression": "off",
+    "@typescript-eslint/naming-convention": "warn",
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/return-await": ["error", "in-try-catch"],
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/restrict-template-expressions": "warn"
   }
 }
