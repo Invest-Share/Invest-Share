@@ -22,7 +22,9 @@ import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 const REGISTER_URL = '/api/signup';
 
-const Register: React.FC = ({ login }: UserProps): JSX.Element => {
+// type FC<P = {}> = FunctionComponent<P> (hold Cmd and click FC)
+// <P = {}> refers to Props
+const Register: React.FC<UserProps> = ({ login }): JSX.Element => {
   const navigate: NavigateFunction = useNavigate();
 
   const [success, setSuccess] = useState<boolean>(false);

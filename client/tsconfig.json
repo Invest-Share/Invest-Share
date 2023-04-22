@@ -19,6 +19,7 @@
     "outDir": "./dist/", // path to output directory
     "target": "ESNext", // version of JS to transpile to (i.e "es5"); ESNext is the latest version,
     // allows globally declared types / interfaces to be used in client folder without need to import to individual files
+    "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
       "*": ["node_modules/*", "src/types/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. 
