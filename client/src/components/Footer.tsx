@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
+import React from 'react';
 
 function Footer (): JSX.Element {
 	const CustomContainer = styled(Container)(({ theme }) => ({

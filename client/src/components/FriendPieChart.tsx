@@ -4,6 +4,7 @@ import axios from '../api/axios';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { CategoryScale } from 'chart.js';
+import { number } from 'prop-types';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -36,7 +37,7 @@ const FriendPieChart: React.FunctionComponent<FriendPieChartProps> = ({ friendID
 	const numberfy = (): number[] => {
 		// **TODO** redefine percent to specific type instead of 'any'
 		const percent: any = friendHoldings.map((stock: {percent_of_holdings: number}) => stock.percent_of_holdings);
-		const finalData = [];
+		const finalData: number[] = [];
 		for (let i = 0; i < percent.length; i++) {
 			finalData.push(Number(percent[i].slice(0, -2)));
 		}
