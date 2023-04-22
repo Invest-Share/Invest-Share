@@ -25,34 +25,34 @@ const Friends: React.FunctionComponent<FriendsProps> = ({ user }) => {
 	const ADDFRIENDS_URL = '/api/addRelationship';
 	const GETFRIENDS_URL = `/api/relationships/${user.id}`;
 
-	const [friends, setFriends] = useState([]);
-	const [friend, setFriend] = useState({
-		user_id: '',
-		first_name: '',
-		last_name: '',
-	});
+  const [friends, setFriends] = useState([]);
+  const [friend, setFriend] = useState({
+    user_id: '',
+    first_name: '',
+    last_name: '',
+  });
 
 	const userData = JSON.parse(localStorage.getItem('user') || "");
 
-	useEffect(() => {
-		setFriend({ ...friend, user_id: userData.id });
-	}, [friend.first_name]);
+  useEffect(() => {
+    setFriend({ ...friend, user_id: userData.id });
+  }, [friend.first_name]);
 
-	useEffect(() => {
-		if (user.id) {
-			const getAllFriends = async () => {
-				try {
-					const response = await axios.get(GETFRIENDS_URL);
-					if (response.data) {
-						setFriends(response.data);
-					}
-				} catch (error) {
-					toast.error('Server did not retrieve data appropriately.');
-				}
-			};
-			getAllFriends();
-		}
-	}, [user]);
+  useEffect(() => {
+    if (user.id) {
+      const getAllFriends = async () => {
+        try {
+          const response = await axios.get(GETFRIENDS_URL);
+          if (response.data) {
+            setFriends(response.data);
+          }
+        } catch (error) {
+          toast.error('Server did not retrieve data appropriately.');
+        }
+      };
+      getAllFriends();
+    }
+  }, [user]);
 
 	const handleSubmit = async (e: { preventDefault: () => void; }) => {
 		e.preventDefault();
@@ -72,74 +72,91 @@ const Friends: React.FunctionComponent<FriendsProps> = ({ user }) => {
 				toast.error('You guys are already friends.');
 			}
 
-			setFriend({
-				user_id: '',
-				first_name: '',
-				last_name: '',
-			});
-		} catch (error) {
-			toast.error('Friend does not exist in the database. ');
-		}
-	};
+      setFriend({
+        user_id: '',
+        first_name: '',
+        last_name: '',
+      });
+    } catch (error) {
+      toast.error('Friend does not exist in the database. ');
+    }
+  };
 
-	// useEffect(() => {
-	// 	const getAllFriends = async () => {
-	// 		try {
-	// 			const response = await axios.get(GETFRIENDS_URL);
-	// 			if (response.data) {
-	// 				setFriends((prev) => {
-	// 					const friendsList = [...prev, friend];
-	// 					return friendsList;
-	// 				});
-	// 			}
-	// 			setFriend({
-	// 				ticker: '',
-	// 				stock_quantity: '',
-	// 			});
-	// 		} catch (error) {
-	// 			toast.error('You have no friends');
-	// 		}
-	// 	};
-	// 	getAllFriends();
-	// }, []);
+  // useEffect(() => {
+  // 	const getAllFriends = async () => {
+  // 		try {
+  // 			const response = await axios.get(GETFRIENDS_URL);
+  // 			if (response.data) {
+  // 				setFriends((prev) => {
+  // 					const friendsList = [...prev, friend];
+  // 					return friendsList;
+  // 				});
+  // 			}
+  // 			setFriend({
+  // 				ticker: '',
+  // 				stock_quantity: '',
+  // 			});
+  // 		} catch (error) {
+  // 			toast.error('You have no friends');
+  // 		}
+  // 	};
+  // 	getAllFriends();
+  // }, []);
 
-	return (
-		<>
-			<CssBaseline />
-			<Box sx={{ display: 'flex', mt: '40px' }}>
-				<Container sx={{ width: '20%', ml: '110px' }}>
-					<SideNavbar />
-				</Container>
-				<Container sx={{ display: 'flex', flexDirection: 'column', gap: '10px', paddingBottom: '10px' }}>
-					<Typography sx={{ fontSize: '24px' }}>Hello {user.firstName}!</Typography>
-					<Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-						<TextField
-							size="small"
-							placeholder="First Name"
-							id="first_name"
-							name="first_name"
-							label="First Name"
-							value={friend.first_name}
-							onChange={(e) => setFriend({ ...friend, first_name: e.target.value })}
-						/>
-						<TextField
-							size="small"
-							placeholder="Last Name"
-							id="last_name"
-							name="last_name"
-							label="Last Name"
-							value={friend.last_name}
-							onChange={(e) => setFriend({ ...friend, last_name: e.target.value })}
-						/>
-						<Button type="submit" variant="contained">
-							Add a Friend
-						</Button>
-					</Box>
-					<TableFriends friends={friends} />
-				</Container>
-			</Box>
-		</>
-	);
+  return (
+    <>
+      <CssBaseline />
+      <Box sx={{ display: 'flex', mt: '40px' }}>
+        <Container sx={{ width: '20%', ml: '110px' }}>
+          <SideNavbar />
+        </Container>
+        <Container
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '10px',
+            paddingBottom: '10px',
+          }}
+        >
+          <Typography sx={{ fontSize: '24px' }}>
+            Hello {user.firstName}!
+          </Typography>
+          <Box
+            component="form"
+            onSubmit={handleSubmit}
+            sx={{ display: 'flex', gap: '10px', alignItems: 'center' }}
+          >
+            <TextField
+              size="small"
+              placeholder="First Name"
+              id="first_name"
+              name="first_name"
+              label="First Name"
+              value={friend.first_name}
+              onChange={(e) =>
+                setFriend({ ...friend, first_name: e.target.value })
+              }
+            />
+            <TextField
+              size="small"
+              placeholder="Last Name"
+              id="last_name"
+              name="last_name"
+              label="Last Name"
+              value={friend.last_name}
+              onChange={(e) =>
+                setFriend({ ...friend, last_name: e.target.value })
+              }
+            />
+            <Button type="submit" variant="contained">
+              Add a Friend
+            </Button>
+          </Box>
+          <TableFriends friends={friends} />
+        </Container>
+      </Box>
+    </>
+  );
 }
 
 export default Friends;

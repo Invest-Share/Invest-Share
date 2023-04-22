@@ -1,32 +1,28 @@
 {
-    "root": true,
-    "ignorePatterns": ["**/test", "**/__tests__"],
-    "env": {
-      "node": true,
-      "browser": true,
-      "es2021": true
-    },
-    "plugins": ["react"],
-    "extends": ["eslint:recommended", "plugin:react/recommended"],
-    "parserOptions": {
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    "rules": {
-        "no-console": "off",
-        "arrow-body-style": "off",
-        "object-curly-newline": "off",
-        "indent": ["warn", 2],
-        "no-unused-vars": ["off", { "vars": "local" }],
-        "prefer-const": "warn",
-        "quotes": ["warn", "single"],
-        "react/prop-types": "off",
-        "semi": ["warn", "always"],
-        "space-infix-ops": "warn"
-    },
-    "settings": {
-      "react": { "version": "detect"}
-    }
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["standard-with-typescript", "prettier"],
+  "overrides": [],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    // <PROJECT_NAME>/tsconfig.json style to allow eslint parser to always find the tsconfig no matter where the working file is.
+    "project": "server/tsconfig.json"
+  },
+  "rules": {
+    "no-console": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/consistent-indexed-object-style": [
+      "error",
+      "index-signature"
+    ],
+    "@typescript-eslint/no-confusing-void-expression": "off",
+    "@typescript-eslint/naming-convention": "warn",
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/return-await": ["error", "in-try-catch"],
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/restrict-template-expressions": "warn"
   }
+}
