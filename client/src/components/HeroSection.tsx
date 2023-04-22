@@ -4,7 +4,7 @@ import { Box, styled, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 import CustomButton from './CustomButton';
 
-function HeroSection() {
+function HeroSection(): JSX.Element {
   const CustomBox = styled(Box)(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',

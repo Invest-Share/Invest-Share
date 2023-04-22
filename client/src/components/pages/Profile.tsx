@@ -11,7 +11,7 @@ import PieChart from '../CustomPieChart';
 import toast, { Toaster } from 'react-hot-toast';
 import CustomButton from '../CustomButton';
 
-function Profile({ user, setUser }) {
+function Profile({ user, setUser }):JSX.Element {
 	const HOLDINGS_URL = `api/getHoldings/${user.id}`;
 
 	const Search = styled('div')(({ theme }) => ({
@@ -28,10 +28,10 @@ function Profile({ user, setUser }) {
 	// }, []);
 
 	useEffect(() => {
-		console.log(user);
+		console.log('Use Effect ', user);
 		if (user.id) {
 			const getAllStocks = async () => {
-				console.log('A');
+				console.log('stocks got');
 				try {
 					const response = await axios.get(HOLDINGS_URL);
 					if (response.data) {

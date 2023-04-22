@@ -9,7 +9,7 @@ import { PureComponent } from 'react';
 import { PieChart, Pie, Legend, Tooltip, ResponsiveContainer } from 'recharts';
 import CustomPieChart from './CustomPieChart';
 
-function TablePortfolio({ stocksData, setStocksData, user, setUser }) {
+function TablePortfolio({ stocksData, setStocksData, user, setUser }):JSX.Element {
 	return (
 		<>
 			<Table size="small">
