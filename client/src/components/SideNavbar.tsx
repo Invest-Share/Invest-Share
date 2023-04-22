@@ -1,27 +1,28 @@
-import React from 'react';
+// import React from 'react';
+// import { Box, styled, Typography, Stack, CssBaseline, List, ListItem, ListItemButton, ListItemText, ListItemIcon } from '@mui/material';
+// import { Container } from '@mui/system';
+// import { Link, useNavigate } from 'react-router-dom';
+// import Profile from './pages/Profile';
+// import PersonIcon from '@mui/icons-material/Person';
+
+import { NavigateFunction, useNavigate } from 'react-router-dom';
+import HomeIcon from '@mui/icons-material/Home';
+import PeopleIcon from '@mui/icons-material/People';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import {
   Box,
-  styled,
-  Typography,
-  Stack,
-  CssBaseline,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
   ListItemIcon,
+  SvgIconTypeMap,
 } from '@mui/material';
-import { Container } from '@mui/system';
-import { Link, useNavigate } from 'react-router-dom';
-import Profile from './pages/Profile';
-import HomeIcon from '@mui/icons-material/Home';
-import PersonIcon from '@mui/icons-material/Person';
-import PeopleIcon from '@mui/icons-material/People';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
-function SideNavbar() {
-  const navigate = useNavigate();
-
+const SideNavbar: React.FC = (): JSX.Element => {
+  // To type useNavigate hook, either 1) import NavigateFunction from @types/react library, or 2) use below from React Router docs (https://reactrouter.com/en/main/hooks/use-navigate#type-declaration)
+  const navigate: NavigateFunction = useNavigate();
+  // no need to type declare menuList
   const menuList = [
     {
       text: 'Homepage',
@@ -40,6 +41,8 @@ function SideNavbar() {
     },
   ];
 
+  // sx = MUI prop to add custom styling
+  // xs, sm, etc. = theme.breakpoints
   return (
     <>
       <Box ml={1} sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -60,6 +63,6 @@ function SideNavbar() {
       </Box>
     </>
   );
-}
+};
 
 export default SideNavbar;
