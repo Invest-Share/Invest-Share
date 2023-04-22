@@ -1,31 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import { Box, styled, Typography, Stack, CssBaseline, InputBase, TextField, Button } from '@mui/material';
+// Used imports
+import { useState, useEffect } from 'react';
+import { Box, styled, Typography, Stack, CssBaseline} from '@mui/material';
 import { Container } from '@mui/system';
 import SideNavbar from '../SideNavbar';
-import NewsFeed from '../NewsFeed';
 import TablePortfolio from '../TablePortfolio';
 import axios from '../../api/axios';
-import SearchIcon from '@mui/icons-material/Search';
 import StockForm from '../StockForm';
 import PieChart from '../CustomPieChart';
-import toast, { Toaster } from 'react-hot-toast';
-import CustomButton from '../CustomButton';
+import toast from 'react-hot-toast';
 
+//Unused imports
+import SearchIcon from '@mui/icons-material/Search';
+import CustomButton from '../CustomButton';
+import NewsFeed from '../NewsFeed';
+
+
+//Component
 function Profile({ user, setUser }):JSX.Element {
 	const HOLDINGS_URL = `api/getHoldings/${user.id}`;
 
-	const Search = styled('div')(({ theme }) => ({
-		backgroundColor: '#F2F2F2',
-		padding: '0 10px',
-		borderRadius: theme.shape.borderRadius,
-		width: '20%',
-	}));
-
 	const [stocksData, setStocksData] = useState([]);
 
-	// useEffect(() => {
-	// 	setUser(JSON.parse(localStorage.getItem('user')));
-	// }, []);
 
 	useEffect(() => {
 		console.log('Use Effect ', user);
@@ -45,10 +40,6 @@ function Profile({ user, setUser }):JSX.Element {
 		}
 	}, [user]);
 
-	// const [loading, setLoading] = useState(false);
-	// const Loading = () => {
-	// 	return <p>Loading...</p>;
-	// };
 
 	return (
 		<>
@@ -74,6 +65,4 @@ function Profile({ user, setUser }):JSX.Element {
 
 export default Profile;
 
-{
-	/* <CustomPieChart stocksData={stocksData} setStocksData={setStocksData} user={user} setUser={setUser} /> */
-}
+

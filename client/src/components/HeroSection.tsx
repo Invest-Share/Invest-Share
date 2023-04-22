@@ -1,5 +1,3 @@
-import React from 'react';
-import Navbar from './Navbar';
 import { Box, styled, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 import CustomButton from './CustomButton';
@@ -28,13 +26,6 @@ function HeroSection(): JSX.Element {
     },
   }));
 
-  // const CustomContainer = styled(Box)(({ theme }) => ({
-  // 	[theme.breakpoints.down('md')]: {
-  // 		flexDirection: 'column',
-  // 		alignItems: 'center',
-  // 		textAlign: 'center',
-  // 	},
-  // }));
 
   return (
     <>
@@ -85,8 +76,6 @@ function HeroSection(): JSX.Element {
       </Box>
     </>
   );
-
-  // <img src="/images/hero-image-2.png" />;
 }
 
 export default HeroSection;
