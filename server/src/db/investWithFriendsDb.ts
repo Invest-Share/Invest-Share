@@ -1,9 +1,13 @@
 import { Pool, QueryResult, QueryResultRow } from 'pg';
-import { PG_URI } from '../utils/config';
+import { PG_URI, PG_URI_TEST } from '../utils/config';
+
+console.log('PG_URI: ', PG_URI);
 
 const pool = new Pool({
-  connectionString: PG_URI,
+  connectionString: process.env.NODE_ENV === 'test' ? PG_URI_TEST : PG_URI,
 });
+
+// console.log('NODE_ENV: ', process.env.NODE_ENV);
 
 export default {
   query: async (

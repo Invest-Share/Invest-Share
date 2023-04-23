@@ -26,6 +26,9 @@ router.get(
   }
 );
 
+/*
+Michael B
+*/
 // get friend's stocks/qty (DB)
 router.get(
   '/getFriendHoldings/:id',

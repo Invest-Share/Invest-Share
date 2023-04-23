@@ -9,7 +9,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module",
     // <PROJECT_NAME>/tsconfig.json style to allow eslint parser to always find the tsconfig no matter where the working file is.
-    "project": "server/tsconfig.json"
+    "project": ["server/tsconfig.json"]
   },
   "rules": {
     "no-console": "off",
