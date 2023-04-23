@@ -1,5 +1,5 @@
 import request from 'supertest';
-import app from '../src/server';
+import app from '../src/utils/app';
 import db from '../src/db/investWithFriendsDb';
 
 describe('Test for User Related Endpoints', () => {

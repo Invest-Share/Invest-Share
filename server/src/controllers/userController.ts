@@ -68,12 +68,12 @@ export const login = async (
     if (JWT_SECRET === undefined) {
       throw Error('JWT_SECRET is not detected by server.');
     }
-    console.log('isValidPW: ', isValidPassword);
+
     // JWT token is currently not saved in cookies. Token with other user info are responded back to FE and saved in local storage for future use (prone to user's manipulation).
     if (isValidPassword) {
       token = jwt.sign({ id: existingUser.id }, JWT_SECRET);
       res.locals.existingUser = { ...existingUser, ...{ token } };
-    }
+    } else throw new Error('Incorrect credentials');
 
     return next();
   } catch (err) {

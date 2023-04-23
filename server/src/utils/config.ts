@@ -1,7 +1,7 @@
-import path from 'path';
 import dotenv from 'dotenv';
 
-dotenv.config({ path: path.join(__dirname, '../../.env') });
+dotenv.config();
+// { path: path.join(__dirname, '../../.env') }
 
 const { API_KEY, PG_URI, PG_URI_TEST, JWT_SECRET } = process.env;
 
