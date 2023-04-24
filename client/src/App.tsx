@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 // import toast, { Toaster } from 'react-hot-toast';
 import { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import './scss/main.scss';
 import Home from './components/pages/Home.js';
@@ -60,26 +60,24 @@ const App: React.FC = (): JSX.Element => {
 
   return (
     <>
-      <Router>
-        <Navbar user={user} logout={logout} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/features" element={<Features />} />
-          <Route path="/contactus" element={<Contact />} />
-          <Route path="/register" element={<Register login={login} />} />
-          <Route path="/login" element={<Login login={login} />} />
-          <Route
-            path="/dashboard"
-            element={<Dashboard user={user} setUser={setUser} />}
-          />
-          <Route
-            path="/profile"
-            element={<Profile user={user} setUser={setUser} />}
-          />
-          <Route path="/friends" element={<Friends user={user} />} />
-        </Routes>
-      </Router>
+      <Navbar user={user} logout={logout} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/features" element={<Features />} />
+        <Route path="/contactus" element={<Contact />} />
+        <Route path="/register" element={<Register login={login} />} />
+        <Route path="/login" element={<Login login={login} />} />
+        <Route
+          path="/dashboard"
+          element={<Dashboard user={user} setUser={setUser} />}
+        />
+        <Route
+          path="/profile"
+          element={<Profile user={user} setUser={setUser} />}
+        />
+        <Route path="/friends" element={<Friends user={user} />} />
+      </Routes>
       <Toaster />
     </>
   );
