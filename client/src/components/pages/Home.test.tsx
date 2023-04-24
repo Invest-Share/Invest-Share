@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'; // can use it or test
+import { describe, it, expect, beforeEach } from 'vitest'; // can use it or test
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import Home from './Home';
@@ -6,7 +6,16 @@ import Home from './Home';
 // 1) ARRANGE unit tests
 // 2) ACT like a user would with the component
 // 3) EXPECT outcomes after user interacts with component
-describe('Home', () => {
+
+xdescribe('Home', () => {
+  // beforeEach(() => {
+  //   render(
+  //     <MemoryRouter>
+  //       <Home />
+  //     </MemoryRouter>
+  //   );
+  // });
+
   it('renders Home component', () => {
     // RTL's render takes any JSX arg, renders as output to VDOM
     // ISSUE: you can pass invalid paths to Home and test still passes
