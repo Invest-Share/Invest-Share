@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest --forceExit",
+    "test": "jest --verbose --forceExit",
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "prestart": "npm run build",
     "start": "node dist/server.js",
