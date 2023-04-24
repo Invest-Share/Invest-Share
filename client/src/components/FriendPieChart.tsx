@@ -4,19 +4,21 @@ import axios from '../api/axios';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import { CategoryScale } from 'chart.js';
+import { number } from 'prop-types';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const FriendPieChart = ({ friendID }) => {
+type FriendPieChartProps = {
+	friendID: string;
+}
+
+const FriendPieChart: React.FunctionComponent<FriendPieChartProps> = ({ friendID }) => {
 	const GETFRIENDHOLDINGS_URL = `/api/getFriendHoldings/${friendID}`;
 
 	const [friendHoldings, setFriendHoldings] = useState([]);
 
-	// percent_of_holdings
-	// ticker
-
 	useEffect(() => {
-		const getAllFriendHoldings = async () => {
+		const getAllFriendHoldings: () => Promise<void> = async () => {
 			try {
 				const response = await axios.get(GETFRIENDHOLDINGS_URL);
 				if (response.data) {
@@ -30,11 +32,12 @@ const FriendPieChart = ({ friendID }) => {
 	}, []);
 	console.log(friendHoldings);
 
-	const tickers = friendHoldings.map((stock) => stock.ticker);
-	// const quantity = stocksData.map((stock) => stock.stock_quantity);
-	const numberfy = () => {
-		const percent = friendHoldings.map((stock) => stock.percent_of_holdings);
-		const finalData = [];
+	const tickers = friendHoldings.map((stock: {ticker: string}) => stock.ticker);
+
+	const numberfy = (): number[] => {
+		// **TODO** redefine percent to specific type instead of 'any'
+		const percent: any = friendHoldings.map((stock: {percent_of_holdings: number}) => stock.percent_of_holdings);
+		const finalData: number[] = [];
 		for (let i = 0; i < percent.length; i++) {
 			finalData.push(Number(percent[i].slice(0, -2)));
 		}
@@ -63,7 +66,3 @@ const FriendPieChart = ({ friendID }) => {
 };
 
 export default FriendPieChart;
-
-{
-	/*<h1>{JSON.stringify(friendHoldings)}</h1>*/
-}
