@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from 'react';
 // import { Link } from 'react-router-dom';
-import { Box, styled, Typography, Stack, CssBaseline, InputBase, TextField, Button, Grid } from '@mui/material';
+import {
+  Box,
+  styled,
+  Typography,
+  Stack,
+  CssBaseline,
+  InputBase,
+  TextField,
+  Button,
+  Grid,
+} from '@mui/material';
 import { Container } from '@mui/system';
 import SideNavbar from '../SideNavbar';
 // import NewsFeed from '../NewsFeed';
@@ -18,12 +28,12 @@ import toast, { Toaster } from 'react-hot-toast';
 import TableFriends from '../TableFriends';
 
 type FriendsProps = {
-	user: {id: number, firstName: string},
-}
+  user: { id: number; firstName: string };
+};
 
 const Friends: React.FunctionComponent<FriendsProps> = ({ user }) => {
-	const ADDFRIENDS_URL = '/api/addRelationship';
-	const GETFRIENDS_URL = `/api/relationships/${user.id}`;
+  const ADDFRIENDS_URL = '/api/addRelationship';
+  const GETFRIENDS_URL = `/api/relationships/${user.id}`;
 
   const [friends, setFriends] = useState([]);
   const [friend, setFriend] = useState({
@@ -32,7 +42,7 @@ const Friends: React.FunctionComponent<FriendsProps> = ({ user }) => {
     last_name: '',
   });
 
-	const userData = JSON.parse(localStorage.getItem('user') || "");
+  const userData = JSON.parse(localStorage.getItem('user') || '');
 
   useEffect(() => {
     setFriend({ ...friend, user_id: userData.id });
@@ -54,23 +64,29 @@ const Friends: React.FunctionComponent<FriendsProps> = ({ user }) => {
     }
   }, [user]);
 
-	const handleSubmit = async (e: { preventDefault: () => void; }) => {
-		e.preventDefault();
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
 
-		try {
-			const existingFriends = friends.find((data: {last_name: string}) => data.last_name === friend.last_name);
-			if (!existingFriends) {
-				const response = await axios.post(ADDFRIENDS_URL, JSON.stringify(friend), {
-					headers: { 'Content-Type': 'application/json' },
-					withCredentials: true,
-				});
-				if (response.data) {
-					setFriends(response.data);
-					localStorage.setItem('friends', JSON.stringify(response.data));
-				}
-			} else {
-				toast.error('You guys are already friends.');
-			}
+    try {
+      const existingFriends = friends.find(
+        (data: { last_name: string }) => data.last_name === friend.last_name
+      );
+      if (!existingFriends) {
+        const response = await axios.post(
+          ADDFRIENDS_URL,
+          JSON.stringify(friend),
+          {
+            headers: { 'Content-Type': 'application/json' },
+            withCredentials: true,
+          }
+        );
+        if (response.data) {
+          setFriends(response.data);
+          localStorage.setItem('friends', JSON.stringify(response.data));
+        }
+      } else {
+        toast.error('You guys are already friends.');
+      }
 
       setFriend({
         user_id: '',
@@ -157,6 +173,6 @@ const Friends: React.FunctionComponent<FriendsProps> = ({ user }) => {
       </Box>
     </>
   );
-}
+};
 
 export default Friends;
