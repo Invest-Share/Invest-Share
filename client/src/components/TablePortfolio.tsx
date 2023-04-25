@@ -3,6 +3,7 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import { StockDataType } from './pages/Profile';
 
 
 function TablePortfolio({ stocksData, setStocksData, user, setUser }):JSX.Element {
@@ -21,7 +22,7 @@ function TablePortfolio({ stocksData, setStocksData, user, setUser }):JSX.Elemen
 				</TableHead>
 				<TableBody>
 					{stocksData &&
-						stocksData.map((stock, index) => (
+						stocksData.map((stock: StockDataType, index) => (
 							<TableRow key={index}>
 								<TableCell>{stock.ticker}</TableCell>
 								<TableCell>{stock.company_name}</TableCell>

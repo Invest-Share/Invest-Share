@@ -14,6 +14,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import CustomButton from '../CustomButton';
 import NewsFeed from '../NewsFeed';
 
+export type StockDataType = {
+	ticker: any,
+	company_name: any,
+	closing_price: any,
+	stock_quantity: any,
+	market_value: any,
+	percent_of_holdings: any
+}
+
 
 //Component
 function Profile({ user, setUser }):JSX.Element {
