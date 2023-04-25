@@ -4,11 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist && tsc",
+    "test": "jest --verbose --forceExit",
+    "build": "rimraf dist && tsc -p tsconfig.build.json",
     "prestart": "npm run build",
     "start": "node dist/server.js",
-    "dev": "rimraf dist && tsc -w & nodemon dist/server.js"
+    "dev": "rimraf dist && tsc -w & nodemon dist/src/server.js"
   },
   "keywords": [],
   "author": "",
@@ -28,9 +28,11 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/jest": "^29.5.1",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/node": "^18.15.11",
     "@types/pg": "^8.6.6",
+    "@types/supertest": "^2.0.12",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
     "@typescript-eslint/parser": "^5.59.0",
     "eslint": "^8.38.0",
@@ -40,9 +42,12 @@
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1",
+    "jest": "^29.5.0",
     "nodemon": "^2.0.22",
     "prettier": "^2.8.7",
     "rimraf": "^5.0.0",
+    "supertest": "^6.3.3",
+    "ts-jest": "^29.1.0",
     "typescript": "^5.0.4"
   }
 }
