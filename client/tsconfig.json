@@ -1,28 +1,32 @@
 {
-    "compilerOptions": {
-        "module": "ESNext", // specify module code generation. Do you want to use CommonJS (better for TS BE config) or ES modules (better for FE config)?
-        "isolatedModules": true,
-        "lib": ["DOM", "DOM.Iterable", "ESNext"], // TS internal libraries to assert types, if not coder-defined
-        "skipLibCheck": true, // skips type checking for declaration files (node_modules) for added runtime performance
-        "jsx": "react-jsx", // how TS handles JSX files
-        "resolveJsonModule": true, // should TS handle JSON modules? It doesn't support by default
-        "strict": true, // basically the point of TS
-        "allowJs": true, // allow a partial TypeScript and JavaScript codebase
-        "strictNullChecks": true, // enable strict null checks as a best practice
-        "useDefineForClassFields": true, // smoothes transition to newer JS versions (migrating to latest v of class fields)
-        "forceConsistentCasingInFileNames": true, // makes consistent filename casing across OS's
-        "esModuleInterop": false, // ES vs Common need different types UTH; false = treat them differently
-        "moduleResolution": "Node", // emulating the way Node resolves modules (file paths, imports / exports)
-        "allowSyntheticDefaultImports": true, // can write import ___ instead of import * (former assumes you're importing everything)
-        "sourceMap": true, // allow sourcemap support
-        "rootDir": "./src" /* Specify the root folder within your source files. */,
-        "outDir": "./dist/", // path to output directory
-        "target": "ESNext", // version of JS to transpile to (i.e "es5"); ESNext is the latest version
-    },
-    "include": [
-        "./src/"
-    ],
-    // "references": [
-    //     { "path": "./tsconfig.node.json" }
-    // ]
+  "compilerOptions": {
+    "module": "ESNext", // specify module code generation. Do you want to use CommonJS (better for TS BE config) or ES modules (better for FE config)?
+    "isolatedModules": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"], // TS internal libraries to assert types, if not coder-defined
+    "skipLibCheck": true, // skips type checking for declaration files (node_modules) for added runtime performance
+    "jsx": "react-jsx", // how TS handles JSX files
+    "resolveJsonModule": true, // should TS handle JSON modules? It doesn't support by default
+    "strict": true, // basically the point of TS
+    "allowJs": true, // allow a partial TypeScript and JavaScript codebase
+    "strictNullChecks": true, // enable strict null checks as a best practice
+    "useDefineForClassFields": true, // smoothes transition to newer JS versions (migrating to latest v of class fields)
+    "forceConsistentCasingInFileNames": true, // makes consistent filename casing across OS's
+    "esModuleInterop": false, // ES vs Common need different types UTH; false = treat them differently
+    "moduleResolution": "Node", // emulating the way Node resolves modules (file paths, imports / exports)
+    "allowSyntheticDefaultImports": true, // can write import ___ instead of import * (former assumes you're importing everything)
+    "sourceMap": true, // allow sourcemap support
+    "rootDir": "./src" /* Specify the root folder within your source files. */,
+    "outDir": "./dist/", // path to output directory
+    "target": "ESNext", // version of JS to transpile to (i.e "es5"); ESNext is the latest version,
+    // allows globally declared types / interfaces to be used in client folder without need to import to individual files
+    "baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
+    "paths": {
+      "*": ["node_modules/*", "src/types/*"]
+    } /* Specify a set of entries that re-map imports to additional lookup locations. 
+          This specific array tells the TypeScript compiler that in addition to looking in node_modules/@types for every import (*) also look in our own .d.ts file location <baseUrl> + src/types/*. */
+  },
+  "include": ["./src/"]
+  // "references": [
+  //     { "path": "./tsconfig.node.json" }
+  // ]
 }
