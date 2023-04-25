@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import {
   Box,
   styled,
@@ -13,21 +13,25 @@ import {
 } from '@mui/material';
 import { Container } from '@mui/system';
 import SideNavbar from '../SideNavbar';
-import NewsFeed from '../NewsFeed';
-import TablePortfolio from '../TablePortfolio';
+// import NewsFeed from '../NewsFeed';
+// import TablePortfolio from '../TablePortfolio';
 import axios from '../../api/axios';
-import SearchIcon from '@mui/icons-material/Search';
-import StockForm from '../StockForm';
-import CustomPieChart from '../CustomPieChart';
+// import SearchIcon from '@mui/icons-material/Search';
+// import StockForm from '../StockForm';
+// import CustomPieChart from '../CustomPieChart';
 import toast, { Toaster } from 'react-hot-toast';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
+// import Table from '@mui/material/Table';
+// import TableBody from '@mui/material/TableBody';
+// import TableCell from '@mui/material/TableCell';
+// import TableHead from '@mui/material/TableHead';
+// import TableRow from '@mui/material/TableRow';
 import TableFriends from '../TableFriends';
 
-function Friends({ user }) {
+type FriendsProps = {
+  user: { id: number; firstName: string };
+};
+
+const Friends: React.FunctionComponent<FriendsProps> = ({ user }) => {
   const ADDFRIENDS_URL = '/api/addRelationship';
   const GETFRIENDS_URL = `/api/relationships/${user.id}`;
 
@@ -38,7 +42,7 @@ function Friends({ user }) {
     last_name: '',
   });
 
-  const userData = JSON.parse(localStorage.getItem('user'));
+  const userData = JSON.parse(localStorage.getItem('user') || '');
 
   useEffect(() => {
     setFriend({ ...friend, user_id: userData.id });
@@ -60,12 +64,12 @@ function Friends({ user }) {
     }
   }, [user]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
     try {
       const existingFriends = friends.find(
-        (data) => data.last_name === friend.last_name
+        (data: { last_name: string }) => data.last_name === friend.last_name
       );
       if (!existingFriends) {
         const response = await axios.post(
@@ -169,6 +173,6 @@ function Friends({ user }) {
       </Box>
     </>
   );
-}
+};
 
 export default Friends;

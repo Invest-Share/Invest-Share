@@ -20,81 +20,105 @@ import { useNavigate } from 'react-router-dom';
 const LOGIN_URL = '/api/login';
 
 const Login = ({ login }) => {
-	const [userData, setUserData] = useState({
-		email: '',
-		password: '',
-	});
-	const { email, password } = userData;
-	const navigate = useNavigate();
+  // this hook is used to track PARTIAL user information (email, password), not ALL as seen on App.tsx
+  const [userData, setUserData] = useState({
+    email: '',
+    password: '',
+  });
+  const { email, password } = userData;
+  const navigate = useNavigate();
 
-	const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-	const handleSubmit = async (event) => {
-		event.preventDefault();
-		try {
-			const response = await axios.post(LOGIN_URL, JSON.stringify({ userData }), {
-				headers: { 'Content-Type': 'application/json' },
-				withCredentials: true,
-			});
-			if (response.data) {
-				setSuccess(true);
-				login(response.data);
-			}
-		} catch (err) {
-			toast.error('Incorrect login');
-		}
-	};
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ userData }),
+        {
+          headers: { 'Content-Type': 'application/json' },
+          withCredentials: true,
+        }
+      );
+      if (response.data) {
+        setSuccess(true);
+        login(response.data);
+      }
+    } catch (err) {
+      toast.error('Incorrect login');
+    }
+  };
 
-	useEffect(() => {
-		if (success) {
-			navigate('/dashboard');
-		}
-	});
+  useEffect(() => {
+    if (success) {
+      navigate('/dashboard');
+    }
+  });
 
-	return (
-		<>
-			<Container maxWidth="xs">
-				<CssBaseline />
-				<Box
-					sx={{
-						marginTop: 8,
-						display: 'flex',
-						flexDirection: 'column',
-						alignItems: 'center',
-					}}>
-					<Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-						<LockOutlinedIcon />
-					</Avatar>
-					<Typography variant="h5">Login</Typography>
-					<Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
-						<TextField margin="normal" required fullWidth id="email" label="Email Address" name="email" onChange={(e) => setUserData({ ...userData, email: e.target.value })} value={email} />
-						<TextField
-							margin="normal"
-							required
-							fullWidth
-							name="password"
-							label="Password"
-							type="password"
-							id="password"
-							onChange={(e) => setUserData({ ...userData, password: e.target.value })}
-							value={password}
-						/>
+  return (
+    <>
+      <Container maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography variant="h5">Login</Typography>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              onChange={(e) =>
+                setUserData({ ...userData, email: e.target.value })
+              }
+              value={email}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              onChange={(e) =>
+                setUserData({ ...userData, password: e.target.value })
+              }
+              value={password}
+            />
 
-						<Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
-							Sign In
-						</Button>
-						<Grid container>
-							<Grid item>
-								<Link href="#" variant="body2">
-									{"Don't have an account? Sign Up"}
-								</Link>
-							</Grid>
-						</Grid>
-					</Box>
-				</Box>
-			</Container>
-		</>
-	);
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item>
+                <Link href="#" variant="body2">
+                  {"Don't have an account? Sign Up"}
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+      </Container>
+    </>
+  );
 };
 
 export default Login;
