@@ -1,4 +1,5 @@
 // Used imports
+import React from 'react';
 import { useState, useEffect } from 'react';
 import { Box, styled, Typography, Stack, CssBaseline} from '@mui/material';
 import { Container } from '@mui/system';
@@ -14,21 +15,19 @@ import SearchIcon from '@mui/icons-material/Search';
 import CustomButton from '../CustomButton';
 import NewsFeed from '../NewsFeed';
 
-export type StockDataType = {
-	ticker: any,
-	company_name: any,
-	closing_price: any,
-	stock_quantity: any,
-	market_value: any,
-	percent_of_holdings: any
+//types of information passed into Profile:
+interface ProfileProps{
+	user: User,
+	setUser: React.Dispatch<React.SetStateAction<User>>
 }
 
 
+
 //Component
-function Profile({ user, setUser }):JSX.Element {
+function Profile ({ user, setUser }:ProfileProps):JSX.Element {
 	const HOLDINGS_URL = `api/getHoldings/${user.id}`;
 
-	const [stocksData, setStocksData] = useState([]);
+	const [stocksData, setStocksData] = useState<Array<Holding>>([]);
 
 
 	useEffect(() => {

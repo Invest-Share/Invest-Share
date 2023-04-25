@@ -3,10 +3,15 @@ import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import { StockDataType } from './pages/Profile';
 
+type TablePortfolioProps = {
+	stocksData : Array<Holding>,
+	setStocksData: React.Dispatch<React.SetStateAction<Array<Holding>>>,
+	user: User,
+	setUser: React.Dispatch<React.SetStateAction<User>>
+}
 
-function TablePortfolio({ stocksData, setStocksData, user, setUser }):JSX.Element {
+function TablePortfolio({ stocksData, setStocksData, user, setUser }:TablePortfolioProps):JSX.Element {
 	return (
 		<>
 			<Table size="small">
@@ -22,7 +27,7 @@ function TablePortfolio({ stocksData, setStocksData, user, setUser }):JSX.Elemen
 				</TableHead>
 				<TableBody>
 					{stocksData &&
-						stocksData.map((stock: StockDataType, index) => (
+						stocksData.map((stock, index) => (
 							<TableRow key={index}>
 								<TableCell>{stock.ticker}</TableCell>
 								<TableCell>{stock.company_name}</TableCell>
