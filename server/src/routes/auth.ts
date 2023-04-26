@@ -16,7 +16,10 @@ router.get(
 
 router.get(
   '/github/callback',
-  passport.authenticate('github', { failureRedirect: '/login' }),
+  passport.authenticate('github', {
+    failureRedirect: 'http://localhost:3000/login',
+    failureMessage: true,
+  }),
   (req: Request, res: Response) => {
     // res.status(200).json({ user_id: 1 });
     res.status(302).redirect('http://localhost:3000/dashboard');
@@ -24,7 +27,7 @@ router.get(
 );
 
 router.get('/getUserInfo', (req: Request, res: Response) => {
-  // if (req.user) console.log(req.user._json.email, req.user._json.name);
+  // console.log('user: ', req.user);
   res.status(200).json(req.user);
 });
 

@@ -14,32 +14,13 @@ import * as userService from '../services/userService';
 
 const app: Express = express();
 
-// let cors = require('cors');
 app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 app.use(cookieParser());
 app.use(express.urlencoded());
 
 // Passport OAuth Configuration
-passport.serializeUser(async function (userInfo: any, done) {
-  try {
-    let user;
-    const existingUser = await userService.getExistingUser(
-      userInfo._json.email
-    );
-    if (existingUser) {
-      user = { ...existingUser, ...{ token: '' } };
-    } else {
-      const nameArray = userInfo._json.name.split(' ');
-      const createdUser = await createUser(
-        nameArray[0],
-        nameArray[1],
-        userInfo._json.email,
-        ''
-      );
-      user = { ...createdUser, ...{ token: '' } };
-    }
-    done(null, user);
-  } catch (err) {}
+passport.serializeUser(async function (user: any, done) {
+  done(null, user);
 });
 
 passport.deserializeUser(function (user: Express.User, done) {
@@ -59,8 +40,28 @@ passport.use(
       profile: any,
       done: VerifyCallback
     ) => {
-      // console.log(profile);
-      return done(null, profile);
+      // console.log('profile:', profile);
+      try {
+        let user;
+        const existingUser = await userService.getExistingUser(
+          profile._json.email
+        );
+        if (existingUser) {
+          user = { ...existingUser, ...{ password: '', token: '' } };
+        } else {
+          const nameArray = profile._json.name.split(' ');
+          const createdUser = await createUser(
+            nameArray[0],
+            nameArray[1],
+            profile._json.email,
+            ''
+          );
+          user = { ...createdUser, ...{ password: '', token: '' } };
+        }
+        return done(null, user);
+      } catch (err) {
+        return done(err as Error);
+      }
     }
   )
 );
