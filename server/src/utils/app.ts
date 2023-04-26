@@ -67,7 +67,7 @@ passport.use(
 
 app.use(
   session({
-    secret: 'ThisIsASecret',
+    secret: process.env.JWT_SECRET!,
     resave: false,
     saveUninitialized: false,
     cookie: {
