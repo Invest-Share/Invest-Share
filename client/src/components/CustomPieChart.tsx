@@ -21,8 +21,10 @@ interface Stock {
 }
 
 interface PieChartProps {
-  stocksData: Stock[];
-  setStocksData?: Dispatch<SetStateAction<string[]>>;
+  stocksData: Array<Holding>;
+  setStocksData?: React.Dispatch<React.SetStateAction<Holding[]>>;
+  user?: User,
+  setUser?: React.Dispatch<React.SetStateAction<User>>
 }
 
 interface Dataset {

@@ -73,7 +73,7 @@ export const login = async (
     if (isValidPassword) {
       token = jwt.sign({ id: existingUser.id }, JWT_SECRET);
       res.locals.existingUser = { ...existingUser, ...{ token } };
-    }
+    } else throw new Error('Incorrect credentials');
 
     return next();
   } catch (err) {

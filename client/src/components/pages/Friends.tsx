@@ -28,7 +28,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import TableFriends from '../TableFriends';
 
 type FriendsProps = {
-  user: { id: number; firstName: string };
+  user: User;
 };
 
 const Friends: React.FunctionComponent<FriendsProps> = ({ user }) => {
