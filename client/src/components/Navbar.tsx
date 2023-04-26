@@ -1,7 +1,7 @@
-import React from 'react';
-import Button from '@mui/material/Button';
-import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React from "react";
+import Button from "@mui/material/Button";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, NavigateFunction } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -11,42 +11,51 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
-import { Container } from '@mui/system';
-import CustomButton from './CustomButton';
-import Avatar from '@mui/material/Avatar';
+import { Container } from "@mui/system";
+import CustomButton from "./CustomButton";
+import Avatar from "@mui/material/Avatar";
 
-function Navbar({ user, logout }) {
+type Anchor = "left";
+
+//user and logout should be typed at App level
+function Navbar({
+  user,
+  logout,
+}: {
+  user: User;
+  logout: React.MouseEventHandler<HTMLSpanElement>;
+}) {
   const [mobileMenu, setMobileMenu] = useState({
     left: false,
   });
 
-  const toggleDrawer = (anchor, open) => () => {
+  const toggleDrawer = (anchor: Anchor, open: boolean) => (): void => {
     setMobileMenu({ [anchor]: open });
     // console.log(mobileMenu)
   };
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
   const menuList = [
     {
-      text: 'Home',
-      path: '/home',
+      text: "Home",
+      path: "/home",
     },
     {
-      text: 'Features',
-      path: '/features',
+      text: "Features",
+      path: "/features",
     },
     {
-      text: 'Contact',
-      path: '/contactus',
+      text: "Contact",
+      path: "/contactus",
     },
   ];
 
-  const list = (anchor) => (
+  const list = (anchor: Anchor): JSX.Element => (
     <List sx={{ width: 250 }} onClick={toggleDrawer(anchor, false)}>
       {menuList.map((item) => (
         <ListItem key={item.text} onClick={() => navigate(item.path)}>
@@ -59,99 +68,99 @@ function Navbar({ user, logout }) {
   );
 
   const NavbarContainer = styled(Container)(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#E6F0FF',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#E6F0FF",
     padding: theme.spacing(2),
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       padding: theme.spacing(2),
     },
   }));
 
   const NavbarLinksBox = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     gap: theme.spacing(4),
-    [theme.breakpoints.down('md')]: {
-      display: 'none',
+    [theme.breakpoints.down("md")]: {
+      display: "none",
     },
   }));
 
   const NavLink = styled(Typography)(({ theme }) => ({
-    fontSize: '14px',
-    color: '#4F5361',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    '&:hover': {
-      color: '#0F1B4C',
+    fontSize: "14px",
+    color: "#4F5361",
+    fontWeight: "bold",
+    cursor: "pointer",
+    "&:hover": {
+      color: "#0F1B4C",
     },
   }));
 
   const CustomMenuIcon = styled(MenuIcon)(({ theme }) => ({
-    cursor: 'pointer',
-    display: 'none',
+    cursor: "pointer",
+    display: "none",
     marginRight: theme.spacing(2),
-    [theme.breakpoints.down('md')]: {
-      display: 'block',
+    [theme.breakpoints.down("md")]: {
+      display: "block",
     },
   }));
 
-  const initials = () => {
-    return user.firstName.charAt(0) + user.lastName.charAt(0);
+  const initials = (): string | undefined => {
+    return user?.firstName?.charAt(0)! + user?.lastName?.charAt(0)!;
   };
 
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Box sx={{ backgroundColor: '#E6F0FF' }}>
+      <Box sx={{ backgroundColor: "#E6F0FF" }}>
         <NavbarContainer>
           <Box
             sx={{
-              display: 'flex',
+              display: "flex",
             }}
           >
             <NavbarLinksBox>
-              <Link to="/home" style={{ textDecoration: 'none' }}>
+              <Link to="/home" style={{ textDecoration: "none" }}>
                 <NavLink variant="body2">Home</NavLink>
               </Link>
-              <Link to="/features" style={{ textDecoration: 'none' }}>
+              <Link to="/features" style={{ textDecoration: "none" }}>
                 <NavLink variant="body2">Features</NavLink>
               </Link>
-              <Link to="/contactus" style={{ textDecoration: 'none' }}>
+              <Link to="/contactus" style={{ textDecoration: "none" }}>
                 <NavLink variant="body2">Contact</NavLink>
               </Link>
             </NavbarLinksBox>
 
             <Box>
-              <CustomMenuIcon onClick={toggleDrawer('left', true)} />
+              <CustomMenuIcon onClick={toggleDrawer("left", true)} />
               <Drawer
                 anchor="left"
-                open={mobileMenu['left']}
-                onClose={toggleDrawer('left', false)}
+                open={mobileMenu["left"]}
+                onClose={toggleDrawer("left", false)}
               >
-                {list('left')}
+                {list("left")}
               </Drawer>
             </Box>
           </Box>
 
           <Box
             sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '1.5rem',
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "1.5rem",
             }}
           >
             {user.email.length > 0 ? (
               <>
                 <Box
-                  sx={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                  sx={{ display: "flex", alignItems: "center", gap: "10px" }}
                 >
                   <Avatar
-                    sx={{ cursor: 'pointer' }}
+                    sx={{ cursor: "pointer" }}
                     onClick={(e) => setOpen(true)}
                   >
                     {initials()}
@@ -159,10 +168,10 @@ function Navbar({ user, logout }) {
                   <Typography
                     onClick={(e) => setOpen(true)}
                     sx={{
-                      fontSize: '14px',
-                      color: '#4F5361',
-                      fontWeight: 'bold',
-                      cursor: 'pointer',
+                      fontSize: "14px",
+                      color: "#4F5361",
+                      fontWeight: "bold",
+                      cursor: "pointer",
                     }}
                   >
                     {user.firstName}
@@ -173,18 +182,18 @@ function Navbar({ user, logout }) {
                     open={open}
                     onClose={(e) => setOpen(false)}
                     anchorOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
+                      vertical: "top",
+                      horizontal: "right",
                     }}
                     transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'right',
+                      vertical: "top",
+                      horizontal: "right",
                     }}
                   >
                     <MenuItem>
-                      <Link to="/profile" style={{ textDecoration: 'none' }}>
+                      <Link to="/profile" style={{ textDecoration: "none" }}>
                         <NavLink
-                          onClick={() => navigate('/profile')}
+                          onClick={() => navigate("/profile")}
                           variant="body2"
                         >
                           My Profile
@@ -192,7 +201,7 @@ function Navbar({ user, logout }) {
                       </Link>
                     </MenuItem>
                     <MenuItem>
-                      <Link to="/" style={{ textDecoration: 'none' }}>
+                      <Link to="/" style={{ textDecoration: "none" }}>
                         <NavLink onClick={logout} variant="body2">
                           Log Out
                         </NavLink>
@@ -203,10 +212,10 @@ function Navbar({ user, logout }) {
               </>
             ) : (
               <>
-                <Link to="/login" style={{ textDecoration: 'none' }}>
+                <Link to="/login" style={{ textDecoration: "none" }}>
                   <NavLink variant="body2">Log In</NavLink>
                 </Link>
-                <Link to="/register" style={{ textDecoration: 'none' }}>
+                <Link to="/register" style={{ textDecoration: "none" }}>
                   <CustomButton
                     backgroundColor="#0F1B4C"
                     color="#fff"
