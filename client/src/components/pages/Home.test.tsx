@@ -1,4 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest'; // can use it or test
+import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import Home from './Home';

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 // import toast, { Toaster } from 'react-hot-toast';
 import { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,16 +19,14 @@ import Friends from './components/pages/Friends';
 const App: React.FC = (): JSX.Element => {
   // this hook is used to track ALL user information (id, first name, last name, email, password)
   const [user, setUser] = useState<User>({
-    id: NaN, // this is a number type object, so it complies to the interface
+    id: null, // matches localStorage value in DevTools > Application tab
     firstName: '',
     lastName: '',
     email: '',
     password: '',
   });
 
-  // login:
-  // ISSUE for TS refactoring: this function is called in Login and Register components, where it only requires email and pw
-  // other components do not require all these obj properties!
+  // login: called in Login and Register components
   const login = (userData: User): void => {
     // console.log(userData);
     const { id, firstName, lastName, email, password } = userData;
