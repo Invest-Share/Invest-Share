@@ -1,3 +1,4 @@
+import React from 'react';
 import { Typography } from '@mui/material';
 
 const Features: React.FC = (): JSX.Element => {
