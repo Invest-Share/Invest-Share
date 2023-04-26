@@ -39,7 +39,7 @@ const Login = ({ login }) => {
         {
           headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
-        }
+        },
       );
       if (response.data) {
         setSuccess(true);
@@ -116,6 +116,7 @@ const Login = ({ login }) => {
             </Grid>
           </Box>
         </Box>
+        <a href="http://localhost:4000/auth/github">Sign in with Github</a>
       </Container>
     </>
   );
