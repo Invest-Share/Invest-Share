@@ -1,43 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from '../../api/axios';
-import { toast } from 'react-hot-toast';
-import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+// import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+// import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "../../api/axios";
+import { toast } from "react-hot-toast";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate, NavigateFunction } from "react-router-dom";
+// import { jsx } from "@emotion/react";
 
-const LOGIN_URL = '/api/login';
+const LOGIN_URL = "/api/login";
 
-const Login = ({ login }) => {
-  // this hook is used to track PARTIAL user information (email, password), not ALL as seen on App.tsx
-  const [userData, setUserData] = useState({
-    email: '',
-    password: '',
+const Login: React.FC<UserProps> = ({ login }): JSX.Element => {
+  const [userData, setUserData] = useState<User>({
+    email: "",
+    password: "",
   });
   const { email, password } = userData;
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
 
-  const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     try {
       const response = await axios.post(
         LOGIN_URL,
         JSON.stringify({ userData }),
         {
-          headers: { 'Content-Type': 'application/json' },
+          headers: { "Content-Type": "application/json" },
           withCredentials: true,
         },
       );
@@ -46,13 +46,14 @@ const Login = ({ login }) => {
         login(response.data);
       }
     } catch (err) {
-      toast.error('Incorrect login');
+      toast.error("Incorrect login");
     }
   };
 
+  //No need to type, as it is implicitly typed with useEffect.
   useEffect(() => {
     if (success) {
-      navigate('/dashboard');
+      navigate("/dashboard");
     }
   });
 
@@ -63,12 +64,12 @@ const Login = ({ login }) => {
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography variant="h5">Login</Typography>
