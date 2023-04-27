@@ -6,6 +6,9 @@ import type { VerifyCallback } from 'passport-oauth2';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import fetch from 'node-fetch';
+import async from 'async';
+import type { AsyncResultCallback } from 'async';
 import indexRouter from '../routes/index';
 import authRouter from '../routes/auth';
 import GithubStrategy from 'passport-github2';
@@ -41,19 +44,55 @@ passport.use(
       done: VerifyCallback
     ) => {
       // console.log('profile:', profile);
+      // console.log('accessToken: ', accessToken);
       try {
-        let user;
-        const existingUser = await userService.getExistingUser(
-          profile._json.email
-        );
+        let existingUser, emailArray, user;
+        if (!profile._json.email) {
+          const emailResponse = await fetch(
+            'https://api.github.com/user/emails',
+            {
+              headers: { authorization: `token ${accessToken}` },
+            }
+          );
+          emailArray = await emailResponse.json();
+          // console.log('content: ', content);
+
+          // Using async package for making paralell asynchronous requests.
+          const getExistingUserParallel = async (
+            email: { email: string; [key: string]: any },
+            callback: AsyncResultCallback<User>
+          ): Promise<void> => {
+            try {
+              const foundUser = await userService.getExistingUser(email.email);
+              return callback(null, foundUser);
+            } catch (err: any) {
+              return callback(err);
+            }
+          };
+
+          const userArray = await async.map(
+            emailArray,
+            getExistingUserParallel
+          );
+          userArray.forEach((user) => {
+            if (user) existingUser = user;
+          });
+          // console.log(emailArray, userArray);
+        } else {
+          existingUser = await userService.getExistingUser(profile._json.email);
+        }
+
         if (existingUser) {
           user = { ...existingUser, ...{ password: '', token: '' } };
         } else {
-          const nameArray = profile._json.name.split(' ');
+          const email = profile._json.email || emailArray[0].email;
+          const nameArray = profile._json.name
+            ? profile._json.name.split(' ')
+            : [email, ''];
           const createdUser = await createUser(
             nameArray[0],
             nameArray[1],
-            profile._json.email,
+            email,
             ''
           );
           user = { ...createdUser, ...{ password: '', token: '' } };
