@@ -39,7 +39,7 @@ const Login: React.FC<UserProps> = ({ login }): JSX.Element => {
         {
           headers: { "Content-Type": "application/json" },
           withCredentials: true,
-        }
+        },
       );
       if (response.data) {
         setSuccess(true);
@@ -117,6 +117,7 @@ const Login: React.FC<UserProps> = ({ login }): JSX.Element => {
             </Grid>
           </Box>
         </Box>
+        <a href="http://localhost:4000/auth/github">Sign in with Github</a>
       </Container>
     </>
   );

@@ -15,6 +15,8 @@ import Dashboard from './components/pages/Dashboard';
 // import SideNavbar from './components/SideNavbar';
 import Profile from './components/pages/Profile';
 import Friends from './components/pages/Friends';
+import axios from './api/axios';
+import { toast } from 'react-hot-toast';
 
 const App: React.FC = (): JSX.Element => {
   // this hook is used to track ALL user information (id, first name, last name, email, password)
@@ -42,10 +44,22 @@ const App: React.FC = (): JSX.Element => {
   };
 
   // logout: 1) resets user state; 2) clears localStorage
-  const logout = (): void => {
+  const logout = async (): Promise<void> => {
     setUser({ id: NaN, firstName: '', lastName: '', email: '', password: '' });
     localStorage.clear();
-    console.log('logged out confirmed');
+    // Logout the Oauth session
+    try {
+      const response = await axios.delete('/auth/logout', {
+        headers: { 'Content-Type': 'application/json' },
+        withCredentials: true,
+      });
+      if (!response.data) {
+        throw new Error();
+      }
+      console.log('logged out confirmed');
+    } catch (err) {
+      toast.error('Cannot get user info.');
+    }
   };
 
   // useEffect occurs once (on App component mount): 1) if there's no user obj on localStorage, the user stored in state is set on localStorage; 2) if there's a user obj on localStorage, the user info held in state is updated to the locally stored user
@@ -68,7 +82,7 @@ const App: React.FC = (): JSX.Element => {
         <Route path="/login" element={<Login login={login} />} />
         <Route
           path="/dashboard"
-          element={<Dashboard user={user} setUser={setUser} />}
+          element={<Dashboard user={user} setUser={setUser} login={login} />}
         />
         <Route
           path="/profile"
