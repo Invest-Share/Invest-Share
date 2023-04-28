@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "test": "vitest",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
   },
   "dependencies": {
     "@emotion/react": "^11.10.6",
@@ -39,6 +41,7 @@
     "@types/react-dom": "^18.0.11",
     "@types/responselike": "^1.0.0",
     "@vitejs/plugin-react": "^3.1.0",
+    "cypress": "^12.11.0",
     "jsdom": "^21.1.1",
     "sass": "^1.60.0",
     "source-map-loader": "^4.0.1",

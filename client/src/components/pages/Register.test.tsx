@@ -100,15 +100,15 @@ xdescribe('Register', () => {
 // test('successful user registration', async () => {
 //   const login = vi.fn();
 //   // create dummy user data returned from DB (will be immediately resolved)
-//   const response = {
-//     data: {
-//       id: 94,
-//       firstName: 'K',
-//       lastName: 'S',
-//       email: 'Ks@cs.com',
-//       token:
-//         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTMsImlhdCI6MTY4MjQ2Mjc2OH0.GR8ib6K6-AssRnEi3d75UkcRQIBFsVVGYwJlwNjirV8',
-//     },
+// const response = {
+//   data: {
+//     id: 94,
+//     firstName: 'K',
+//     lastName: 'S',
+//     email: 'Ks@cs.com',
+//     token:
+//       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OTMsImlhdCI6MTY4MjQ2Mjc2OH0.GR8ib6K6-AssRnEi3d75UkcRQIBFsVVGYwJlwNjirV8',
+//   },
 //   };
 //   // mimic post request
 //   axios.post.mockImplementationOnce(() => {
