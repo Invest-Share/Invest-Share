@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import db from '../db/investWithFriendsDb';
 import { API_KEY } from '../utils/config';
 

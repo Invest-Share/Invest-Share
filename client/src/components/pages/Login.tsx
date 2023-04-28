@@ -1,29 +1,30 @@
-import React, { useState, useEffect } from "react";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
+import React, { useState, useEffect } from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
 // import FormControlLabel from "@mui/material/FormControlLabel";
 // import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 // import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "../../api/axios";
-import { toast } from "react-hot-toast";
-import "react-toastify/dist/ReactToastify.css";
-import { useNavigate, NavigateFunction } from "react-router-dom";
+import axios from '../../api/axios';
+import { toast } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate, NavigateFunction } from 'react-router-dom';
 // import { jsx } from "@emotion/react";
+import GitHubIcon from '@mui/icons-material/GitHub';
 
-const LOGIN_URL = "/api/login";
+const LOGIN_URL = '/api/login';
 
 const Login: React.FC<UserProps> = ({ login }): JSX.Element => {
   const [userData, setUserData] = useState<User>({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
   const { email, password } = userData;
   const navigate: NavigateFunction = useNavigate();
@@ -37,7 +38,7 @@ const Login: React.FC<UserProps> = ({ login }): JSX.Element => {
         LOGIN_URL,
         JSON.stringify({ userData }),
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
           withCredentials: true,
         },
       );
@@ -46,14 +47,14 @@ const Login: React.FC<UserProps> = ({ login }): JSX.Element => {
         login(response.data);
       }
     } catch (err) {
-      toast.error("Incorrect login");
+      toast.error('Incorrect login');
     }
   };
 
   //No need to type, as it is implicitly typed with useEffect.
   useEffect(() => {
     if (success) {
-      navigate("/dashboard");
+      navigate('/dashboard');
     }
   });
 
@@ -64,12 +65,12 @@ const Login: React.FC<UserProps> = ({ login }): JSX.Element => {
         <Box
           sx={{
             marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography variant="h5">Login</Typography>
@@ -117,7 +118,15 @@ const Login: React.FC<UserProps> = ({ login }): JSX.Element => {
             </Grid>
           </Box>
         </Box>
-        <a href="http://localhost:4000/auth/github">Sign in with Github</a>
+        <a href="http://localhost:4000/auth/github">
+          <Button
+            variant="outlined"
+            startIcon={<GitHubIcon />}
+            sx={{ color: 'black', mt: 2 }}
+          >
+            Signin with Github
+          </Button>
+        </a>
       </Container>
     </>
   );

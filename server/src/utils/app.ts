@@ -8,6 +8,7 @@ import cors from 'cors';
 import indexRouter from '../routes/index';
 import authRouter from '../routes/auth';
 import githubStrategy from './githubStrategy';
+import { updateLRUTicker } from './updateLRUTicker';
 
 const app: Express = express();
 
@@ -45,6 +46,9 @@ app.use(express.json());
 // import router objects containing middleware functions
 app.use('/api', indexRouter);
 app.use('/auth', authRouter);
+
+// Automatically updated the LRU stock in database. One stock per minute to accomdate the quota limit of the API.
+setInterval(updateLRUTicker, 60000);
 
 // global error handling
 /*
