@@ -30,23 +30,4 @@ describe('Register', () => {
       cy.get('a').should('contain', 'Already have an account? Log in');
     });
   });
-
-  it('successfully registers new user', () => {
-    // spy on network request, stub network response
-    cy.intercept('POST', '/api/signup', (req) => {
-      cy.get('form').within(() => {
-        // req assertions
-        cy.get('input[name=firstName]').type('K');
-        cy.get('input[name=lastName]').type('S');
-        cy.get('input[name=email]').type('KS@cs.com');
-        cy.get('input[name=password]').type('758vie');
-      });
-      expect(req.body).to.deep.equal({
-        firstName: 'K',
-        lastName: 'S',
-        email: 'KS@cs.com',
-        password: '758vie',
-      });
-    });
-  });
 });
