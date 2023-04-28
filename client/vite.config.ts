@@ -17,6 +17,12 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/setupTests.ts'],
   },
+  build: {
+    outDir: './dist',
+  },
+  optimizeDeps: {
+    include: ['cypress'],
+  },
   // following is to get RTL working with Vitest (in Vite(st), it's intentional that you cannot load JSX components in .js test files)
   // https://github.com/vitejs/vite/discussions/3448
   // esbuild: {
