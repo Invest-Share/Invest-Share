@@ -2,8 +2,9 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   env: {
-    GITHUB_EMAIL: 'upnata@gmail.com',
-    GITHUB_PW: 'fiona!94',
+    // will need to populate these variables to make E2E test work!
+    GITHUB_EMAIL: '',
+    GITHUB_PW: '',
   },
 
   e2e: {

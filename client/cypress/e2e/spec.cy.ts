@@ -1,5 +1,6 @@
 describe('App', () => {
   it('successfully loads', () => {
+    cy.wait(3000);
     cy.visit('http://localhost:3000');
   });
 
@@ -17,6 +18,7 @@ describe('App', () => {
     cy.get('.css-rpp4xf > .MuiBox-root').click();
     cy.get('ul[role = menu]').should('be.visible');
     cy.get('li[role = menuitem]').filter(':contains("Log Out")').click();
+    cy.wait(3000);
     cy.url().should('eq', 'http://localhost:3000/');
   });
 
@@ -54,6 +56,7 @@ describe('App', () => {
     cy.get('input[name=ticker]').type('MSFT');
     cy.get('input[name=stock_quantity]').type('99');
     cy.get('button').filter(':contains("SELL")').click();
+    cy.wait(3000);
 
     // Navigate to Friends
     cy.get('div[role=button]').filter(':contains("Friends")').click();
