@@ -6,5 +6,5 @@
     "types": ["cypress", "node"],
     "esModuleInterop": true // added so React import would be ES, not Common
   },
-  "include": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "support/commands.js"]
 }
