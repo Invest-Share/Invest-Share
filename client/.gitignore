@@ -12,6 +12,7 @@ package-lock.json
 dist
 dist-ssr
 package-lock.json
+cypress.config.ts
 
 # Editor directories and files
 .vscode/*

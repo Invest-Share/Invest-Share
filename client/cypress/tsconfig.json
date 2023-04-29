@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "target": "es5",
+    "lib": ["es5", "dom"],
+    "types": ["cypress", "node"],
+    "esModuleInterop": true // added so React import would be ES, not Common
+  },
+  "include": ["**/*.ts", "**/*.tsx", "support/commands.js"]
+}
