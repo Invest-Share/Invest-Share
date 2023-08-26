@@ -79,7 +79,7 @@ Thank you!
 - Yi Sun • [LinkedIn](https://www.linkedin.com/in/yi-sun-swe/) • [Github](https://github.com/YiSun88)
 - Upasana Natarajan • [LinkedIn](https://www.linkedin.com/in/upasananatarajan/) • [Github](https://github.com/unatarajan)
 - David An • [LinkedIn](https://www.linkedin.com/in/david-h-an/) • [Github](https://github.com/davidan1989)
-- Michael • [LinkedIn](https://www.linkedin.com/in/mbildstein/) • [Github](https://github.com/mbildstein)
+- Michael Bildstein • [LinkedIn](https://www.linkedin.com/in/mbildstein/) • [Github](https://github.com/mbildstein)
 - Jonathan Nevarez • [LinkedIn](https://www.linkedin.com/in/john-nevarez/) • [Github](https://github.com/Nevjon12)
 - Kevin Featherstone • [LinkedIn](https://www.linkedin.com/in/featherstone-kevin/) • [Github](https://github.com/kevin-featherstone)
 - Kevin Yoon • [LinkedIn](https://www.linkedin.com/in/kevinjyoon/) • [Github](https://github.com/kyoon0)
