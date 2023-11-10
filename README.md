@@ -44,6 +44,8 @@ Invest Share is a social media platform to connect and find how your friends are
 <p align="left">
   <div>Check out our live walkthrough of InvestShare demo'ing new user registration, existing user login, portfolio compilation / modification, and finding / adding friends with whom to share your investments. (Powered by Cypress!)</div>
   <br>
+  
+  ![InvestShare Walkthrough GIF](https://github.com/Invest-Share/Invest-Share/blob/3734d6866a397316e99e35fd8cc752e70d8535e8/client/public/images/InvestShare_CypressE2ERun.gif?raw=true)
 </p>
 
 ## <b>Installation / Getting Started</b>
