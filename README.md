@@ -1,4 +1,3 @@
-
   <h1 align="center"><b>Invest Share, V2 of Invest with Friends</b></h1>
 
 <!-- TABLE OF CONTENTS -->
@@ -6,6 +5,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#overview">Overview</a></li>
+    <li><a href="#investshare-walkthrough">InvestShare Walkthrough</a></li>
     <li><a href="#installation--getting-started">Installation / Getting Started</a></li>
     <li><a href="#tech-stack">Tech Stack</a></li>
     <li><a href="#contributing">Contributing</a></li>
@@ -20,18 +20,32 @@ Invest Share is a social media platform to connect and find how your friends are
     <ul>
       <li>100% migration to TypeScript, to ensure type safety.</li>
       <li>100% coverage unit and integration test for backend.</li>
-      <li>Automated end-to-end test empowered by Cypress.</li>
+      <li>Automated end-to-end testing powered by Cypress.</li>
       <li>OAuth for secure authorization.</li>
-      <li>Least Recently Used(LRU) eviction policy for effecient update on stock data.</li>
+      <li>Least Recently Used (LRU) eviction policy for effecient update on stock data.</li>
     </ul>
 </p>
 <p>
-  <div>Landing Page</div>
-  <img  src="https://raw.githubusercontent.com/cs-scratch-project-stkk/invest-with-friends/main/client/src/media/homepage.png" width=90% >
-  <div>My Portfolio Page</div>
-  <img  src="https://raw.githubusercontent.com/cs-scratch-project-stkk/invest-with-friends/main/client/src/media/my-portfolio-page.png" width=90% >
-  <div>My Friends Page</div>
-  <img  src="https://raw.githubusercontent.com/cs-scratch-project-stkk/invest-with-friends/main/client/src/media/friends-page.png" width=90% >
+  <div>Home Page - Register your account to start compiling your portfolio and sharing!</div>
+  <br>
+  <img  src="https://raw.githubusercontent.com/cs-scratch-project-stkk/invest-with-friends/main/client/src/media/homepage.png" width=100% >
+  <br>
+  <div>My Portfolio Page - To compile your portfolio, search the companies you invest in by ticker, add the number of shares you hold, and Buy. If your portfolio changes, search the ticker(s), enter the quantities, and Sell. (The newsfeed is currently under development.)</div>
+  <br>
+  <img  src="https://raw.githubusercontent.com/cs-scratch-project-stkk/invest-with-friends/main/client/src/media/my-portfolio-page.png" width=100% >
+  <br>
+  <div>My Friends Page - Search your friends on InvestShare to pull their portfolios and start growing your wealth together!</div>
+  <br>
+  <img  src="https://raw.githubusercontent.com/cs-scratch-project-stkk/invest-with-friends/main/client/src/media/friends-page.png" width=100% >
+</p>
+
+## <b>InvestShare Walkthrough</b>
+
+<p align="left">
+  <div>Check out our live walkthrough of InvestShare demo'ing new user registration, existing user login, portfolio compilation / modification, and finding / adding friends with whom to share your investments. (Powered by Cypress!)</div>
+  <br>
+  
+  ![InvestShare Walkthrough GIF](https://github.com/Invest-Share/Invest-Share/blob/3734d6866a397316e99e35fd8cc752e70d8535e8/client/public/images/InvestShare_CypressE2ERun.gif?raw=true)
 </p>
 
 ## <b>Installation / Getting Started</b>
@@ -43,9 +57,9 @@ After following installation steps perform the following:
 3. Run the following command in the terminal. This will npm install node modules in the root, client, and server folders:
 
 ```
-npm install && cd client && npm install && cd ../server && npm install
+cd client && npm install && cd ../server && npm install
 ```
-   
+
 4. Run `npm run dev` in root directory of extension.
 5. Run `http://localhost:3000/` on your browser to start sharing your investment ideas with your friends!
 
@@ -64,6 +78,7 @@ npm install && cd client && npm install && cd ../server && npm install
 - [Supertest](https://github.com/ladjs/supertest)
 - [Cypress](https://www.cypress.io/)
 - [Passport.js](https://www.passportjs.org/)
+- [AlphaVantage API](https://www.alphavantage.co/)
 
 ## <b>Contributing</b>
 
@@ -76,6 +91,7 @@ Thank you!
   </p>
 
 ## <b>Meet Our Team</b>
+
 - Yi Sun • [LinkedIn](https://www.linkedin.com/in/yi-sun-swe/) • [Github](https://github.com/YiSun88)
 - Upasana Natarajan • [LinkedIn](https://www.linkedin.com/in/upasananatarajan/) • [Github](https://github.com/unatarajan)
 - David An • [LinkedIn](https://www.linkedin.com/in/david-h-an/) • [Github](https://github.com/davidan1989)
